@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
         const db = await connectToDatabase();
 
         // Task 2: Access MongoDB collection
-         const collection = db.collection("users");
+        const collection = db.collection("users");
 
         //Task 3: Check for existing email
         const existingEmail = await collection.findOne({ email: req.body.email });
@@ -29,20 +29,22 @@ router.post('/register', async (req, res) => {
         const hash = await bcryptjs.hash(req.body.password, salt);
         const email = req.body.email;
 
-                const newUser = await collection.insertOne({
+        //Task 4: Save user details in database
+        const newUser = await collection.insertOne({
             email: req.body.email,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             password: hash,
             createdAt: new Date(),
-        }); //Task 4: Save user details in database
-                 const payload = {
+        });
+
+        const payload = {
             user: {
                 id: newUser.insertedId,
             },
         };
 
-        const authtoken = jwt.sign(payload, JWT_SECRET); //Task 5: Create JWT authentication with user._id as payload
+        const authtoken = jwt.sign(payload, JWT_SECRET);
         logger.info('User registered successfully');
         res.json({authtoken,email});
     } catch (e) {
