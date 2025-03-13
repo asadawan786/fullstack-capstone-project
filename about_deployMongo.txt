@@ -1,0 +1,3 @@
+
+The directory that I worked with on IBM Cloud IDE is /home/project/fullstack-capstone-project/
+deploymongo.yml must be in "project" directory

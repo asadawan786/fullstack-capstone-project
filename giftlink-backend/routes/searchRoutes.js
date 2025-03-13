@@ -6,6 +6,7 @@ const connectToDatabase = require('../models/db');
 // Search for gifts
 router.get('/', async (req, res, next) => {
     try {
+
         // Task 1: Connect to MongoDB
         const db = await connectToDatabase();
         const collection = db.collection("gifts");

@@ -1,0 +1,12 @@
+.custom-login-btn {
+    background-color: green;
+    border: none;
+    border-radius: 15px; /* Rounded edges */
+}
+
+.custom-login-btn .nav-link {
+    color: white; /* Ensure the text color contrasts with the background */
+    text-decoration: none;
+}
+
+
